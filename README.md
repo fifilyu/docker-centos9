@@ -144,4 +144,4 @@ fifilyu/centos9:latest
 * vim-enhanced
 * wget
 * xz
-* yum-utils
+* dnf-utils
