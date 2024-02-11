@@ -11,7 +11,6 @@ ENV LANG en_US.UTF-8
 # 设置DNF
 ####################
 RUN grep '*.i386 *.i586 *.i686' /etc/dnf.conf || echo "exclude=*.i386 *.i586 *.i686" >> /etc/dnf.conf
-RUN dnf update -y
 RUN dnf install -y epel-release
 RUN dnf makecache
 
