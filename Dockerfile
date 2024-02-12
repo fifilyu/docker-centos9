@@ -53,7 +53,7 @@ RUN ssh-keygen -t ed25519 -b 256 -N '' -f /etc/ssh/ssh_host_ed25519_key
 ####################
 # 安装Python3.12
 ####################
-RUN dnf install -y tcl tk xz zlib openssl
+RUN dnf install -y tcl tk xz zlib openssl sqlite
 
 ###########################
 ## 安装Python312
