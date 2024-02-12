@@ -455,10 +455,10 @@
 /* #undef HAVE_GDBM_DASH_NDBM_H */
 
 /* Define to 1 if you have the <gdbm.h> header file. */
-/* #undef HAVE_GDBM_H */
+#define HAVE_GDBM_H 1
 
 /* Define to 1 if you have the <gdbm/ndbm.h> header file. */
-/* #undef HAVE_GDBM_NDBM_H */
+#define HAVE_GDBM_NDBM_H 1
 
 /* Define if you have the getaddrinfo function. */
 #define HAVE_GETADDRINFO 1
@@ -834,7 +834,7 @@
 #define HAVE_NCURSES_H 1
 
 /* Define to 1 if you have the <ndbm.h> header file. */
-/* #undef HAVE_NDBM_H */
+#define HAVE_NDBM_H 1
 
 /* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
 /* #undef HAVE_NDIR_H */
@@ -1012,7 +1012,7 @@
 #define HAVE_RL_RESIZE_TERMINAL 1
 
 /* Define to 1 if you have the <rpc/rpc.h> header file. */
-/* #undef HAVE_RPC_RPC_H */
+#define HAVE_RPC_RPC_H 1
 
 /* Define to 1 if you have the `rtpSpawn' function. */
 /* #undef HAVE_RTPSPAWN */

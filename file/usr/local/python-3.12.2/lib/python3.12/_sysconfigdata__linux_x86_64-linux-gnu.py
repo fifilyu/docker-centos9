@@ -238,8 +238,8 @@ build_time_vars = {'ABIFLAGS': '',
  'HAVE_GCC_ASM_FOR_X87': 1,
  'HAVE_GCC_UINT128_T': 1,
  'HAVE_GDBM_DASH_NDBM_H': 0,
- 'HAVE_GDBM_H': 0,
- 'HAVE_GDBM_NDBM_H': 0,
+ 'HAVE_GDBM_H': 1,
+ 'HAVE_GDBM_NDBM_H': 1,
  'HAVE_GETADDRINFO': 1,
  'HAVE_GETC_UNLOCKED': 1,
  'HAVE_GETEGID': 1,
@@ -363,7 +363,7 @@ build_time_vars = {'ABIFLAGS': '',
  'HAVE_NANOSLEEP': 1,
  'HAVE_NCURSESW': 1,
  'HAVE_NCURSES_H': 1,
- 'HAVE_NDBM_H': 0,
+ 'HAVE_NDBM_H': 1,
  'HAVE_NDIR_H': 0,
  'HAVE_NETCAN_CAN_H': 0,
  'HAVE_NETDB_H': 1,
@@ -422,7 +422,7 @@ build_time_vars = {'ABIFLAGS': '',
  'HAVE_RL_COMPLETION_SUPPRESS_APPEND': 1,
  'HAVE_RL_PRE_INPUT_HOOK': 1,
  'HAVE_RL_RESIZE_TERMINAL': 1,
- 'HAVE_RPC_RPC_H': 0,
+ 'HAVE_RPC_RPC_H': 1,
  'HAVE_RTPSPAWN': 0,
  'HAVE_SCHED_GET_PRIORITY_MAX': 1,
  'HAVE_SCHED_H': 1,
@@ -690,21 +690,21 @@ build_time_vars = {'ABIFLAGS': '',
                    '_json  _lsprof  _opcode  _pickle  _queue  _random  '
                    '_struct  _xxsubinterpreters  _xxinterpchannels  _zoneinfo  '
                    'audioop  math  cmath  _statistics  _datetime  _decimal  '
-                   'binascii  _bz2  _lzma  zlib  readline  _md5  _sha1  _sha2  '
-                   '_sha3  _blake2  pyexpat  _elementtree  _codecs_cn  '
-                   '_codecs_hk  _codecs_iso2022  _codecs_jp  _codecs_kr  '
-                   '_codecs_tw  _multibytecodec  unicodedata  _crypt  fcntl  '
-                   'grp  mmap  ossaudiodev  _posixsubprocess  resource  '
-                   'select  _socket  spwd  syslog  termios  _posixshmem  '
-                   '_multiprocessing  _ctypes  _curses  _curses_panel  '
-                   '_sqlite3  _ssl  _hashlib  _uuid  _tkinter  xxsubtype  '
-                   '_xxtestfuzz  _testbuffer  _testinternalcapi  _testcapi  '
-                   '_testclinic  _testimportmultiple  _testmultiphase  '
-                   '_testsinglephase  _ctypes_test  xxlimited  xxlimited_35  '
-                   'atexit  faulthandler  posix  _signal  _tracemalloc  '
-                   '_codecs  _collections  errno  _io  itertools  _sre  '
-                   '_thread  time  _typing  _weakref  _abc  _functools  '
-                   '_locale  _operator  _stat  _symtable  pwd',
+                   'binascii  _bz2  _lzma  zlib  _dbm  _gdbm  readline  _md5  '
+                   '_sha1  _sha2  _sha3  _blake2  pyexpat  _elementtree  '
+                   '_codecs_cn  _codecs_hk  _codecs_iso2022  _codecs_jp  '
+                   '_codecs_kr  _codecs_tw  _multibytecodec  unicodedata  '
+                   '_crypt  fcntl  grp  mmap  nis  ossaudiodev  '
+                   '_posixsubprocess  resource  select  _socket  spwd  syslog  '
+                   'termios  _posixshmem  _multiprocessing  _ctypes  _curses  '
+                   '_curses_panel  _sqlite3  _ssl  _hashlib  _uuid  _tkinter  '
+                   'xxsubtype  _xxtestfuzz  _testbuffer  _testinternalcapi  '
+                   '_testcapi  _testclinic  _testimportmultiple  '
+                   '_testmultiphase  _testsinglephase  _ctypes_test  '
+                   'xxlimited  xxlimited_35  atexit  faulthandler  posix  '
+                   '_signal  _tracemalloc  _codecs  _collections  errno  _io  '
+                   'itertools  _sre  _thread  time  _typing  _weakref  _abc  '
+                   '_functools  _locale  _operator  _stat  _symtable  pwd',
  'MODDISABLED_NAMES': '',
  'MODLIBS': '',
  'MODOBJS': 'Modules/atexitmodule.o  Modules/faulthandler.o  '
@@ -724,10 +724,10 @@ build_time_vars = {'ABIFLAGS': '',
                     '_lsprof _opcode _pickle _queue _random _struct '
                     '_xxsubinterpreters _xxinterpchannels _zoneinfo audioop '
                     'math cmath _statistics _datetime _decimal binascii _bz2 '
-                    '_lzma zlib readline _md5 _sha1 _sha2 _sha3 _blake2 '
-                    'pyexpat _elementtree _codecs_cn _codecs_hk '
+                    '_lzma zlib _dbm _gdbm readline _md5 _sha1 _sha2 _sha3 '
+                    '_blake2 pyexpat _elementtree _codecs_cn _codecs_hk '
                     '_codecs_iso2022 _codecs_jp _codecs_kr _codecs_tw '
-                    '_multibytecodec unicodedata _crypt fcntl grp mmap '
+                    '_multibytecodec unicodedata _crypt fcntl grp mmap nis '
                     'ossaudiodev _posixsubprocess resource select _socket spwd '
                     'syslog termios _posixshmem _multiprocessing _ctypes '
                     '_curses _curses_panel _sqlite3 _ssl _hashlib _uuid '
@@ -757,7 +757,9 @@ build_time_vars = {'ABIFLAGS': '',
  'MODULE_MATH_LDFLAGS': '-lm',
  'MODULE_MATH_STATE': 'yes',
  'MODULE_MMAP_STATE': 'yes',
- 'MODULE_NIS_STATE': 'missing',
+ 'MODULE_NIS_CFLAGS': '-I/usr/include/tirpc',
+ 'MODULE_NIS_LDFLAGS': '-lnsl -ltirpc',
+ 'MODULE_NIS_STATE': 'yes',
  'MODULE_OBJS': '\\',
  'MODULE_OSSAUDIODEV_LDFLAGS': '',
  'MODULE_OSSAUDIODEV_STATE': 'yes',
@@ -862,7 +864,9 @@ build_time_vars = {'ABIFLAGS': '',
  'MODULE__CURSES_STATE': 'yes',
  'MODULE__DATETIME_LDFLAGS': '-lm',
  'MODULE__DATETIME_STATE': 'yes',
- 'MODULE__DBM_STATE': 'missing',
+ 'MODULE__DBM_CFLAGS': '-DUSE_GDBM_COMPAT',
+ 'MODULE__DBM_LDFLAGS': '-lgdbm_compat',
+ 'MODULE__DBM_STATE': 'yes',
  'MODULE__DECIMAL_CFLAGS': '-I./Modules/_decimal/libmpdec -DCONFIG_64=1 '
                            '-DANSI=1 -DHAVE_UINT128_T=1',
  'MODULE__DECIMAL_DEPS': './Modules/_decimal/docstrings.h \\ '
@@ -873,7 +877,9 @@ build_time_vars = {'ABIFLAGS': '',
  'MODULE__ELEMENTTREE_DEPS': './Modules/pyexpat.c \\ Modules/expat/libexpat.a',
  'MODULE__ELEMENTTREE_STATE': 'yes',
  'MODULE__FUNCTOOLS_LDFLAGS': '',
- 'MODULE__GDBM_STATE': 'missing',
+ 'MODULE__GDBM_CFLAGS': '',
+ 'MODULE__GDBM_LDFLAGS': '-lgdbm',
+ 'MODULE__GDBM_STATE': 'yes',
  'MODULE__HASHLIB_CFLAGS': '',
  'MODULE__HASHLIB_DEPS': './Modules/hashlib.h',
  'MODULE__HASHLIB_LDFLAGS': '-lcrypto',
@@ -1096,6 +1102,8 @@ build_time_vars = {'ABIFLAGS': '',
                'Modules/_bz2.cpython-312-x86_64-linux-gnu.so '
                'Modules/_lzma.cpython-312-x86_64-linux-gnu.so '
                'Modules/zlib.cpython-312-x86_64-linux-gnu.so '
+               'Modules/_dbm.cpython-312-x86_64-linux-gnu.so '
+               'Modules/_gdbm.cpython-312-x86_64-linux-gnu.so '
                'Modules/readline.cpython-312-x86_64-linux-gnu.so '
                'Modules/_md5.cpython-312-x86_64-linux-gnu.so '
                'Modules/_sha1.cpython-312-x86_64-linux-gnu.so '
@@ -1116,6 +1124,7 @@ build_time_vars = {'ABIFLAGS': '',
                'Modules/fcntl.cpython-312-x86_64-linux-gnu.so '
                'Modules/grp.cpython-312-x86_64-linux-gnu.so '
                'Modules/mmap.cpython-312-x86_64-linux-gnu.so '
+               'Modules/nis.cpython-312-x86_64-linux-gnu.so '
                'Modules/ossaudiodev.cpython-312-x86_64-linux-gnu.so '
                'Modules/_posixsubprocess.cpython-312-x86_64-linux-gnu.so '
                'Modules/resource.cpython-312-x86_64-linux-gnu.so '
