@@ -1,13 +1,13 @@
 # docker-centos9
 
-CentOS Stream 9 Docker镜像
+CentOS Stream 9 Docker 镜像
 
 ## 构建镜像
 
 ```bash
 git clone https://github.com/fifilyu/docker-centos9.git
 cd docker-centos9
-docker buildx build -t fifilyu/centos9:latest .
+sh build.sh
 ```
 
 ## 使用方法
@@ -22,18 +22,19 @@ docker run -d \
     fifilyu/centos9:latest
 ```
 
-显示容器IP：
+显示容器 IP：
 
 ```bash
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' centos9
 ```
+
 查看 `root` 用户随机密码：
 
 ```bash
 docker logs centos9
 ```
 
-SSH远程连接：
+SSH 远程连接：
 
 ```bash
 ssh root@容器IP -v
@@ -43,14 +44,14 @@ ssh root@容器IP -v
 
 ```bash
 docker run -d \
---env LANG=en_US.UTF-8 \
+    --env LANG=en_US.UTF-8 \
     --env TZ=Asia/Shanghai \
--e PUBLIC_STR="$(<~/.ssh/fifilyu@archlinux.pub)" \
---name centos9_key \
-fifilyu/centos9:latest
+    --env PUBLIC_STR="$(<~/.ssh/fifilyu@archlinux.pub)" \
+    --name centos9_key \
+    fifilyu/centos9:latest
 ```
 
-效果同上。另外，可以通过SSH无密码登录容器。
+效果同上。另外，可以通过 SSH 无密码登录容器。
 
 `$(<~/.ssh/fifilyu@archlinux.pub)` 表示在命令行读取文件内容到变量。
 
@@ -62,86 +63,86 @@ fifilyu/centos9:latest
 
 ```bash
 docker run -d \
---env LANG=en_US.UTF-8 \
+    --env LANG=en_US.UTF-8 \
     --env TZ=Asia/Shanghai \
--p 1022:22 \
---name centos9_port \
-fifilyu/centos9:latest
+    -p 1022:22 \
+    --name centos9_port \
+    fifilyu/centos9:latest
 ```
 
-执行 `ssh root@127.0.0.1 -p 1022 -v` 测试SSH端口状态
+执行 `ssh root@127.0.0.1 -p 1022 -v` 测试 SSH 端口状态
 
 ## 自定义设置
 
-自定义配置参数，可以直接通过Docker命令进入bash编辑：
+自定义配置参数，可以直接通过 Docker 命令进入 bash 编辑：
 
 `docker exec -it 容器名称 bash`
 
-或者通过SSH+私钥方式连接容器的22端口：
+或者通过 SSH+私钥方式连接容器的 22 端口：
 
 `ssh root@容器IP`
 
 ## 镜像变更内容
 
-### 新增Yum源
+### 新增 Yum 源
 
-* epel
+- epel
 
 ### 开放端口
 
-* SSHD->22（通过SSH+私钥方式连接容器的22端口，方便查看日志）
+- SSHD->22（通过 SSH+私钥方式连接容器的 22 端口，方便查看日志）
 
 ### 启动服务
 
-* OpenSSH Daemon（sshd）
+- OpenSSH Daemon（sshd）
 
 ### 文件列表
 
-* /etc/ssh/sshd_config
-* /etc/ssh/ssh_host_rsa_key
-* /etc/ssh/ssh_host_ecdsa_key
-* /etc/ssh/ssh_host_ed25519_key
-* /etc/security/limits.conf
-* /etc/yum.conf
-* /etc/selinux/config
-* /etc/profile.d/python3.sh
-* /usr/local/bin/jq
-* /usr/local/python3
-* /usr/local/python-3.12.2
-* /root/.ssh/authorized_keys
+- /etc/ssh/sshd_config
+- /etc/ssh/ssh_host_rsa_key
+- /etc/ssh/ssh_host_ecdsa_key
+- /etc/ssh/ssh_host_ed25519_key
+- /etc/security/limits.conf
+- /etc/yum.conf
+- /etc/selinux/config
+- /etc/profile.d/python3.sh
+- /usr/local/bin/jq
+- /usr/local/python3
+- /usr/local/python-3.12.2
+- /root/.ssh/authorized_keys
 
 ### 软件包
 
 #### Python
 
-* python312
+- python312
 
 #### 命令行编辑工具
 
-* xmlstarlet（xml）
-* crudini（ini）
-* jq（json）
-* yq（yaml）
-* toml-cli（toml）
+- xmlstarlet（xml）
+- crudini（ini）
+- jq（json）
+- yq（yaml）
+- toml-cli（toml）
 
 #### 常用工具
 
-* bash-completion
-* bzip2
-* curl
-* iproute
-* mlocate
-* openssh-clients
-* openssh-server
-* pwgen
-* rsync
-* screen
-* tar
-* tcpdump
-* telnet
-* tree
-* unzip
-* vim-enhanced
-* wget
-* xz
-* dnf-utils
+- bash-completion
+- bzip2
+- curl
+- iproute
+- mlocate
+- openssh-clients
+- openssh-server
+- pwgen
+- rsync
+- screen
+- tar
+- tcpdump
+- telnet
+- tree
+- unzip
+- vim-enhanced
+- wget
+- xz
+- dnf-utils
