@@ -10,7 +10,7 @@ ENV LANG en_US.UTF-8
 ####################
 # 设置DNF
 ####################
-RUN grep '*.i386 *.i586 *.i686' /etc/dnf.conf || echo "exclude=*.i386 *.i586 *.i686" >> /etc/dnf.conf
+RUN grep '*.i386 *.i586 *.i686' /etc/dnf.conf || echo "exclude=*.i386 *.i586 *.i686" >>/etc/dnf.conf
 RUN dnf install -y epel-release
 RUN dnf makecache
 
@@ -31,14 +31,14 @@ RUN grep 'set fencs=utf-8,gbk' /etc/vimrc || echo 'set fencs=utf-8,gbk' >>/etc/v
 ####################
 # 设置文件句柄
 ####################
-RUN grep '*               soft   nofile            65535' /etc/security/limits.conf || echo "*               soft   nofile            65535" >> /etc/security/limits.conf
-RUN grep '*               hard   nofile            65535' /etc/security/limits.conf || echo "*               hard   nofile            65535" >> /etc/security/limits.conf
+RUN grep '*               soft   nofile            65535' /etc/security/limits.conf || echo "*               soft   nofile            65535" >>/etc/security/limits.conf
+RUN grep '*               hard   nofile            65535' /etc/security/limits.conf || echo "*               hard   nofile            65535" >>/etc/security/limits.conf
 
 ####################
 # 关闭SELINUX
 ####################
-RUN echo SELINUX=disabled>/etc/selinux/config
-RUN echo SELINUXTYPE=targeted>>/etc/selinux/config
+RUN echo SELINUX=disabled >/etc/selinux/config
+RUN echo SELINUXTYPE=targeted >>/etc/selinux/config
 
 ####################
 # 配置SSH
@@ -65,7 +65,7 @@ WORKDIR /usr/local
 RUN test -L python3 || ln -s python-3.12.2 python3
 
 ARG py_bin_dir=/usr/local/python3/bin
-RUN echo "export PATH=${py_bin_dir}:\${PATH}" > /etc/profile.d/python3.sh
+RUN echo "export PATH=${py_bin_dir}:\${PATH}" >/etc/profile.d/python3.sh
 
 WORKDIR ${py_bin_dir}
 RUN test -L pip312 || ln -v -s pip3 pip312
@@ -87,12 +87,17 @@ RUN dnf install -y xmlstarlet crudini
 ####################
 # BASH设置
 ####################
-RUN echo "alias ll='ls -l --color=auto --group-directories-first'" >> /root/.bashrc
+RUN echo "alias ll='ls -l --color=auto --group-directories-first'" >>/root/.bashrc
+
+####################
+# Locale设置
+####################
+RUN echo 'LANG="en_US.UTF-8"' >/etc/locale.conf
 
 ####################
 # 清理
 ####################
-RUN rm -f /root/anaconda-ks.cfg /root/anaconda-post-nochroot.log  /root/anaconda-post.log  /root/original-ks.cfg
+RUN rm -f /root/anaconda-ks.cfg /root/anaconda-post-nochroot.log /root/anaconda-post.log /root/original-ks.cfg
 RUN dnf clean all
 
 ####################
