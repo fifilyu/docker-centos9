@@ -12,6 +12,8 @@ ENV LANG en_US.UTF-8
 ####################
 RUN grep '*.i386 *.i586 *.i686' /etc/dnf.conf || echo "exclude=*.i386 *.i586 *.i686" >>/etc/dnf.conf
 RUN dnf install -y epel-release
+COPY file/etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo
+COPY file/etc/yum.repos.d/epel-next.repo /etc/yum.repos.d/epel-next.repo
 RUN dnf makecache
 
 ####################
